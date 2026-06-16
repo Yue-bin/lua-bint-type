@@ -72,13 +72,13 @@ function bintlib.fromstring(s) end
 
 ---Create a new bint from a buffer of little-endian bytes.
 ---Extra bytes are trimmed from the right, missing bytes are padded to the right.
----@param string buffer Buffer of bytes.
+---@param buffer string Buffer of bytes.
 ---@return bint
 function bintlib.fromle(buffer) end
 
 ---Create a new bint from a buffer of big-endian bytes.
 ---Extra bytes are trimmed from the left, missing bytes are padded to the left.
----@param string buffer Buffer of bytes.
+---@param buffer string Buffer of bytes.
 ---@return bint
 function bintlib.frombe(buffer) end
 

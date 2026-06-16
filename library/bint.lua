@@ -2,13 +2,16 @@
 
 ---Small portable arbitrary-precision integer arithmetic library in pure Lua.
 ---
----The module returned by `require('bint')` is a factory function that creates
----a bint module configured for a fixed integer size.
+---The value returned by `require('bint')` is a factory function that creates
+---a `bintlib` module configured for a fixed integer size.
 ---
 ---```lua
 ---local bint = require('bint')(256) -- 256-bit integers
 ---local x = bint.new('12345678901234567890')
 ---```
+---@alias bint-factory fun(bits: integer, wordbits?: integer): bintlib
+
+---A bint module configured for a specific integer size.
 ---@class bintlib
 ---@field bits integer Number of bits representing a bint instance.
 local bintlib = {}
@@ -21,7 +24,7 @@ local bint = {}
 --#region Factory / module creation
 
 ---Create a new bint module representing integers of the desired bit size.
----This is the returned function when `require('bint')` is called.
+---This has the same signature as the value returned by `require('bint')`.
 ---@param bits integer Number of bits for the integer representation, must be multiple of wordbits and at least 64.
 ---@param wordbits? integer Number of bits for the internal word, defaults to half of Lua's integer size.
 ---@return bintlib bintmodule
@@ -523,4 +526,8 @@ function bintlib.__le(x, y) end
 ---@return bint
 function bintlib.__call(x) end
 
-return bintlib
+---The factory function returned by `require('bint')`.
+---@type bint-factory
+local factory = nil
+
+return factory
